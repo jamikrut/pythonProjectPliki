@@ -8,7 +8,7 @@ dialect = csv.excel
 dialect.delimiter = '|'
 
 with open(filename, encoding='utf-8') as country_file:
-    headers = country_file.readline().rsplit('\n').split(dialect.delimiter)
+    headers = country_file.readline().rsplit('\n').strip(dialect.delimiter)
 
     for index, header in enumerate(headers):
         headers = country_file.readline().rstrip("\n").split((dialect.delimiter))
