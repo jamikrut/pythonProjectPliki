@@ -79,6 +79,8 @@ FROM Sales.SalesOrderHeader
 WHERE ShipMethodID = '%'
 --dokończ !!!
 
+--SELECT * FROM ShipMethod
+
 -- 16. Wybierz wszystkie produkty o nazwie zawierającej słowo "bike" i posortuj je według nazwy w porządku rosnącym.[Production.Product]
 SELECT *
 FROM Production.Product
