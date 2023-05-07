@@ -60,10 +60,27 @@ FROM Sales.Customer
 where TerritoryID = 8
 SELECT *
 FROM Sales.SalesTerritory
-WHERE CountryRegionCode = 'DE' -- -> TerritoryID = 8
+WHERE CountryRegionCode = 'DE'
+-- -> TerritoryID = 8
 
 -- 12. Wybierz produkty z kategorii "Components" i posortuj je według nazwy. (3 zapytania) [Production.Product]
+
+
 -- 13. Wybierz pracowników zatrudnionych w okresie od 1 stycznia 2005 do 31 grudnia 2006 i posortuj ich według daty zatrudnienia. [HumanResources.Employee]
 -- 14. Wybierz zamówienia od klienta o identyfikatorze 29485 i posortuj je według daty zamówienia malejąco. [Sales.SalesOrderHeader]
+SELECT *
+FROM Sales.SalesOrderHeader
+WHERE CustomerID = '29485'
+ORDER BY OrderDate DESC
+
 -- 15. Wybierz wszystkie zamówienia, które mają metodę dostawy "OVERSEAS - DELUXE" lub "CARGO TRANSPORT 5" i posortuj je według daty wysyłki. (2 zapytania) [Sales.SalesOrderHeader]
+SELECT *
+FROM Sales.SalesOrderHeader
+WHERE ShipMethodID = '%'
+--dokończ !!!
+
 -- 16. Wybierz wszystkie produkty o nazwie zawierającej słowo "bike" i posortuj je według nazwy w porządku rosnącym.[Production.Product]
+SELECT *
+FROM Production.Product
+WHERE Name LIKE '%bike%'
+ORDER BY Name
