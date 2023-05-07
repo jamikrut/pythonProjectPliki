@@ -12,7 +12,7 @@ if __name__ == '__main__':
     while True:
         print("1 - Dodaj składnik", "2 - Pokaż wszytskie", "3 - Szukaj po nazwie", "0 - Zakończ",
               "Wybierz co chcesz zrobić", sep="\n")
-        decision = input(">")
+        decision = input("> ")
 
         if decision not in strategy_map:
             print("Proszę wybrać poprwną wartość")
