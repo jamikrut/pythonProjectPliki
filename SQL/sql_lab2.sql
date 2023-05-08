@@ -7,9 +7,20 @@ FROM Production.Product pp
          LEFT JOIN Production.ProductCategory ppc ON ppc.ProductCategoryID = psc.ProductCategoryID
 
 -- 2. Wybierz imię, nazwisko i adres e-mail dla wszystkich pracowników w [HumanResources.Employee] i podaj nazwy działu z tabeli [HumanResources.Department]
-SELECT * FROM  HumanResources.Employee
+SELECT FirstName, LastName, pea.EmailAddress, hrd.Name AS DepartmentName
+FROM HumanResources.Employee hre
+         LEFT JOIN HumanResources.EmployeeDepartmentHistory hrdh ON hre.BusinessEntityID = hrdh.BusinessEntityID
+         LEFT JOIN HumanResources.Department hrd ON hrdh.DepartmentID = hrd.DepartmentID
+         LEFT JOIN Person.Person pp ON hre.BusinessEntityID = pp.BusinessEntityID
+         LEFT JOIN Person.EmailAddress pea ON pp.BusinessEntityID = pea.BusinessEntityID
 
 -- 3. Wybierz datę zamówienia, nazwa klienta (Imię + Nazwisko) i sumę należności dla wszystkich zamówień w tabeli [Sales.SalesOrderHeader], i podaj nazwę obszaru sprzedaży z tabeli [Sales.SalesTerritory]
+SELECT soh.OrderDate, pp.LastName + ' ' + pp.FirstName AS ClientName, soh.TotalDue, sst.Name AS TerritoryName
+FROM Sales.SalesOrderHeader soh
+         LEFT JOIN Sales.Customer sc ON soh.CustomerID = sc.CustomerID
+         LEFT JOIN Person.Person pp ON sc.PersonID = pp.BusinessEntityID
+LEFT JOIN Sales.SalesTerritory sst ON soh.TerritoryID = sst.TerritoryID
+
 -- 4. Pobierz listę wszystkich klientów i odpowiadające im zamówienia sprzedaży [Sales.Customer] [Sales.SalesOrderHeader]
 -- 5. Wybierz Imię i Nazwisko wszystkich klientów [Sales.Customer] wraz z ich adresami e-mail [Person.EmailAddress]
 -- 6. Pobierz listę wszystkich zamówień sprzedaży [Sales.SalesOrderHeader] oraz odpowiadających im klientów [Sales.Customer] do wyniku załącz adresy [Person.Address]
